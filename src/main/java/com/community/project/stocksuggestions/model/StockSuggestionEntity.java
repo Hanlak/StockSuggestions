@@ -2,6 +2,7 @@ package com.community.project.stocksuggestions.model;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
@@ -13,6 +14,17 @@ import static javax.persistence.InheritanceType.SINGLE_TABLE;
 public class StockSuggestionEntity {
     @Id
     private long id;
-    private String StockName;
+    private String stockName;
     private Instant lastModified; // persisted upon persist & merge
+
+    public StockSuggestionEntity(long id, String stockName, Instant lastModified) {
+        this.id = id;
+        this.stockName = stockName;
+        this.lastModified = lastModified;
+    }
+        @PreUpdate
+        @PrePersist
+        public void updateTimeStamps() {
+            lastModified = Instant.now();
+    }
 }
