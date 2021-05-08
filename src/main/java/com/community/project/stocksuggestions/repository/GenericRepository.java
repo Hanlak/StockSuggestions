@@ -1,16 +1,17 @@
-package com.community.project.stocksuggestions.dao;
+package com.community.project.stocksuggestions.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-public class GenericDao<ENTITY, PK> {
+public class GenericRepository<ENTITY, PK> {
   @PersistenceContext
   protected EntityManager
       entityManager; // this or we implement CRUD DAO but we have more control with this
+
   private Class<ENTITY> clazz;
 
-  protected GenericDao(Class<ENTITY> clazz) {
+  protected GenericRepository(Class<ENTITY> clazz) {
     this.clazz = clazz;
   }
 

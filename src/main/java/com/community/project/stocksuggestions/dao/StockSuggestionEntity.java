@@ -1,4 +1,4 @@
-package com.community.project.stocksuggestions.model;
+package com.community.project.stocksuggestions.dao;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -15,8 +15,7 @@ public class StockSuggestionEntity {
   private int weightAge;
   private Instant lastModified; // persisted upon persist & merge
 
-  public StockSuggestionEntity(long id, String stockName, int weightAge) {
-    this.id = id;
+  public StockSuggestionEntity(String stockName, int weightAge) {
     this.stockName = stockName;
     this.weightAge = weightAge;
   }
@@ -25,5 +24,31 @@ public class StockSuggestionEntity {
   @PrePersist
   public void updateTimeStamps() {
     lastModified = Instant.now();
+  }
+
+  //getter and setters
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public String getStockName() {
+    return stockName;
+  }
+
+  public void setStockName(String stockName) {
+    this.stockName = stockName;
+  }
+
+  public int getWeightAge() {
+    return weightAge;
+  }
+
+  public void setWeightAge(int weightAge) {
+    this.weightAge = weightAge;
   }
 }
